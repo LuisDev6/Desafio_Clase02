@@ -6,14 +6,19 @@ class ProductManager {
     }
 
     addProduct(product) {
-        const codeProduct = this.products.find((products) => products.code === products.code);
+        const codeProduct = this.products.find((product) => product.code === product.code);
 
         if (codeProduct) {
             console.log("********[]-This code already exists-[]********");
-            return;
         } else {
-            product.code = this.products[this.products.length - 1].code + 1;
-            this.products.push(product)
+            if (this.products.length === 0) {
+                product.code = 1;
+                this.products.push(product)
+
+            } else {
+                product.code = this.products[this.products.length - 1].code + 1;
+                this.products.push(product)
+            }
         }
 
     }
@@ -21,13 +26,14 @@ class ProductManager {
         console.log(this.products);
     }
     getProductById(code) {
-        let findId = this.products.find((product) => product.code === code);
+        let findId = this.products.filter((product) => product.code === code);
 
-        if(findId){
-            let productFoud =
+        if (findId.length === 0) {
+            console.log("********[]-No product found with this code-[]********")
+            
+        } else {
+            console.log(findId)
         }
-        console.log(findId);
-        return findId;
     }
 }
 
@@ -49,11 +55,11 @@ const productManager = new ProductManager();
 
 productManager.getProducts();
 
-productManager.addProduct( new Product("producto de prueba", "esto es un producto de prueba", 200, "Sin imagen", 0, 25));
+productManager.addProduct(new Product("producto de prueba", "esto es un producto de prueba", 200, "Sin imagen", 0, 25));
 
 productManager.getProducts();
 
-productManager.addProduct( new Product("producto de prueba", "esto es un producto de prueba", 200, "Sin imagen", 1, 25));
+productManager.addProduct(new Product("producto de prueba", "esto es un producto de prueba", 200, "Sin imagen", 0, 25));
 
 productManager.getProductById(1)
 
