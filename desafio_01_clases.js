@@ -3,17 +3,29 @@ class ProductManager {
 
     constructor(){
         this.pruducts=[];
-        this.counter=0;   
+        this.counter=1;   
     }
 
-    addProduct(){
+    addProduct(product){
+        const codeProduct = this.products.find((product) => product.code === products.code);
+
+        if(codeProduct){
+            console.log("This code already exists");
+            return;
+        }else{
+            product.id = this.counter;
+            this.counter ++;
+            this.products.push(product)
+        }
 
     }
     getProduct(){
-
+        console.log(this.products);
     }
-    getProductById(){
-        
+    getProductById(code){
+        let findId = this.products.find((product) => product.id === id);
+        console.log(findId);
+        return findId;
     }
 }
 
